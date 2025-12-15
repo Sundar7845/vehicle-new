@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+
+body{
+    @apply bg-white;
+}
+
+.dataTables_filter label,.dataTables_filter input,.dataTables_length label,.dataTables_length select,.dataTables_info,.paginate_button {
+    font-size: 12px !important;
+}
+
+.dataTables_filter,.dataTables_length{
+    display: flex;
+    justify-content: end;
+    margin-bottom: 14px;
+}

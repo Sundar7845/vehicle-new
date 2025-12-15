@@ -1,0 +1,64 @@
+<!doctype html>
+@extends('backend.layout')
+@section('title')
+    Dashboard
+@endsection
+@section('content')
+    <section class="bg-white p-4">
+
+        <div class="flex items-center justify-between">
+            <div class="font-medium flex justify-center gap-2 items-center">
+
+                <svg class="fill-black stroke-black h-5" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke="none"
+                        d="M1.82468 0.00012207H6.93378C7.94191 0.00012207 8.75846 1.00826 8.75846 1.8248V6.9339C8.75846 7.94203 7.94191 8.75858 6.93378 8.75858H1.82468C0.816545 8.75858 0 7.75044 0 6.9339V1.8248C0 0.816667 0.816545 0.00012207 1.82468 0.00012207Z"
+                        fill="inherit" />
+                    <path
+                        d="M12.7715 0.645508H17.8809C18.1645 0.645508 18.4598 0.790139 18.6992 1.04688C18.9441 1.30968 19.0594 1.61467 19.0596 1.82422V6.93359C19.0596 7.58508 18.5323 8.1123 17.8809 8.1123H12.7715C12.488 8.11215 12.1933 7.96845 11.9541 7.71191C11.7088 7.44886 11.5928 7.14322 11.5928 6.93359V1.82422C11.593 1.17309 12.1204 0.645756 12.7715 0.645508Z"
+                        fill="#FED428FE" stroke="inherit" stroke-width="1.29152" />
+                    <path stroke="none"
+                        d="M1.82468 10.9468H6.93378C7.94191 10.9468 8.75846 11.9549 8.75846 12.7715V17.8806C8.75846 18.8887 7.94191 19.7052 6.93378 19.7052H1.82468C0.816545 19.7052 0 18.6971 0 17.8806V12.7715C0 11.7633 0.816545 10.9468 1.82468 10.9468Z"
+                        fill="inherit" />
+                    <path stroke="none"
+                        d="M12.7719 10.9468H17.881C18.8892 10.9468 19.7057 11.9549 19.7057 12.7715V17.8806C19.7057 18.8887 18.8892 19.7052 17.881 19.7052H12.7719C11.7638 19.7052 10.9473 18.6971 10.9473 17.8806V12.7715C10.9473 11.7633 11.7638 10.9468 12.7719 10.9468Z"
+                        fill="inherit" />
+                </svg>
+
+
+                <span>
+                    Dashboard
+                </span>
+            </div>
+            <!-- <div>
+                        <a href="{{ route('backend.logout') }}"
+                            class="bg-[#FED428] cursor-pointer text-black px-4 py-1 rounded-full text-sm font-medium flex justify-center items-center gap-1">
+                            <svg class="h-4" width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9.22517 3H7.68764V1.5H1.53753V16.5H7.68764V15H9.22517V16.5C9.22517 17.3284 8.53679 18 7.68764 18H1.53753C0.688372 18 0 17.3284 0 16.5V1.5C0 0.671573 0.688372 0 1.53753 0H7.68764C8.53679 0 9.22517 0.671573 9.22517 1.5V3ZM15.0568 8.25L11.7566 5.03033L12.8438 3.96967L18 9L12.8438 14.0303L11.7566 12.9697L15.0568 9.75H6.15011V8.25H15.0568Z"
+                                    fill="black" />
+                            </svg>
+                            Logout
+                        </a>
+                    </div> -->
+        </div>
+    </section>
+
+    <section class="px-4 py-6">
+
+        <div class="mb-2">
+            <div class="font-medium flex items-center gap-1 text-sm">
+                <img src="{{ asset('images/user.svg') }}" alt="user" class="h-6">
+                <span>
+                    Hi {{ Auth::user()->name }} 👋
+                </span>
+            </div>
+        </div>
+
+        <div>
+            <img class="max-w-xs mx-auto" src="{{ asset('images/under-construction.png') }}" alt="">
+        </div>
+
+    </section>
+@endsection
