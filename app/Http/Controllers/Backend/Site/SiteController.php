@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Site;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdminSite;
 use App\Models\Party;
 use App\Models\Site;
 use App\Models\User;
@@ -17,14 +18,50 @@ use Yajra\DataTables\DataTables;
 
 class SiteController extends Controller
 {
-    function site()
+    function site($id = null)
     {
-        // SELECTIVE VISIBILITY: Fetch only sites assigned to the current admin
-        $auth = Auth::user()->role_id;
-        if ($auth == 3) {
-            $sites = Site::where('is_active', 1)->get();
+        $roleId = Auth::user()->role_id;
+
+        // If ID is NOT provided → show default site list
+        if ($id === null) {
+            if ($roleId == 3) {
+                // Role 3: all active sites
+                $previousUrl = url()->previous();
+                $id = basename(parse_url($previousUrl, PHP_URL_PATH));
+                $userId = AdminSite::where('site_id', $id)->value('user_id');
+                $adminSiteIds = AdminSite::where('user_id', $userId)
+                    ->pluck('site_id')
+                    ->toArray();
+
+                $sites = Site::whereIn('id', $adminSiteIds)
+                    ->where('is_active', 1)
+                    ->get();
+            } else {
+                // Other roles: only assigned sites
+                $sites = Auth::user()
+                    ->sites()
+                    ->where('is_active', 1)
+                    ->get();
+            }
+
+            return view('backend.site', compact('sites'));
+        }
+
+        // If ID IS provided
+        if ($roleId == 3) {
+            $adminSiteIds = AdminSite::where('user_id', $id)
+                ->pluck('site_id')
+                ->toArray();
+
+            $sites = Site::whereIn('id', $adminSiteIds)
+                ->where('is_active', 1)
+                ->get();
         } else {
-            $sites = Auth::user()->sites()->where('is_active', 1)->get();
+            $sites = Auth::user()
+                ->sites()
+                ->where('is_active', 1)
+                ->where('sites.id', $id)
+                ->get();
         }
         return view('backend.site', compact('sites'));
     }
@@ -42,7 +79,9 @@ class SiteController extends Controller
                     ], 404);
                 }
 
-                $data = WalkinVehicle::where('user_id', $user)->whereDate('walkin_vehicles.in_time', Carbon::today())->Join('units', 'units.id', '=', 'walkin_vehicles.unit_id')
+                $data = WalkinVehicle::where('user_id', $user)
+                    ->whereDate('walkin_vehicles.in_time', Carbon::today())
+                    ->Join('units', 'units.id', '=', 'walkin_vehicles.unit_id')
                     ->select([
                         'walkin_vehicles.*',
                         'units.unit_name' // 👈 alias
@@ -80,7 +119,22 @@ class SiteController extends Controller
 
             // Otherwise load the view
             // SELECTIVE VISIBILITY: Ensure admin has access to this site
-            $site = Auth::user()->sites()->find($id);
+            $roleId = Auth::user()->role_id;
+
+            if ($roleId == 3) {
+                // Role 3: can access any active site
+                $site = Site::where('id', $id)
+                    ->where('is_active', 1)
+                    ->first();
+            } else {
+                // Other roles: only assigned sites
+                $site = Auth::user()
+                    ->sites()
+                    ->where('is_active', 1)
+                    ->where('sites.id', $id)
+                    ->first();
+            }
+
             if (!$site) {
                 return redirect()->back()->with('error', 'Site not found or access denied.');
             }
