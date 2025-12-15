@@ -42,7 +42,7 @@ class RefreshOtpsCommand extends Command
 
         foreach ($users as $user) {
             $user->otp = rand(1000, 9999);
-            $user->otp_expires_at = now()->addMinute();
+            $user->otp_expires_at = now()->addMinute(2);
             $user->save();
         }
 
