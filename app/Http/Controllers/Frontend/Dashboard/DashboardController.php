@@ -98,7 +98,7 @@ class DashboardController extends Controller
 
     public function fetchDefaultUnit($vehicleTypeId)
     {
-        $unit = Units::where('id', $vehicleTypeId)->first(); // fetch default unit
+        $unit = VehicleType::where('id', $vehicleTypeId)->first(); // fetch default unit
 
         if ($unit) {
             return response()->json([
