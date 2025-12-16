@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Owner;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -14,6 +15,12 @@ class OwnerController extends Controller
     {
         $settings = Setting::first();
         return view('backend.owner.kill', compact('settings'));
+    }
+
+    function taluk()
+    {
+        $taluk = User::where('role_id', 1)->get();
+        return view('backend.owner.taluk', compact('taluk'));
     }
 
     // Update Kill Switch value via AJAX

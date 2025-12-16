@@ -19,7 +19,7 @@
         <section>
             <div
                 class="bg-black px-6 py-3 text-white text-sm grid grid-cols-3 place-items-center text-center fixed z-10 bottom-0 max-w-md w-full">
-                <a href="{{ route('backend.dashboard') }}"
+                <a href="@if (Auth::user()->role_id == 3) {{ route('backend.kill') }}@else{{ route('backend.dashboard') }} @endif"
                     class="grid grid-cols-1 gap-1 place-items-center 
                 {{ request()->routeIs('backend.dashboard') ? 'text-[#FED428]' : 'text-white' }}">
                     <svg class="h-5 
@@ -43,7 +43,7 @@
                     <span>Dashboard</span>
 
                 </a>
-                <a href="{{ route('backend.site') }}"
+                <a href="@if (Auth::user()->role_id == 3) {{ route('backend.taluk') }} @else {{ route('backend.site') }} @endif"
                     class="grid grid-cols-1 gap-1 place-items-center
                 {{ request()->routeIs('backend.site*') ? 'text-[#FED428]' : 'text-white' }}">
 

@@ -29,18 +29,6 @@
                     Dashboard
                 </span>
             </div>
-            <!-- <div>
-                                                <a href="{{ route('backend.logout') }}"
-                                                    class="bg-[#FED428] cursor-pointer text-black px-4 py-1 rounded-full text-sm font-medium flex justify-center items-center gap-1">
-                                                    <svg class="h-4" width="18" height="18" viewBox="0 0 18 18" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M9.22517 3H7.68764V1.5H1.53753V16.5H7.68764V15H9.22517V16.5C9.22517 17.3284 8.53679 18 7.68764 18H1.53753C0.688372 18 0 17.3284 0 16.5V1.5C0 0.671573 0.688372 0 1.53753 0H7.68764C8.53679 0 9.22517 0.671573 9.22517 1.5V3ZM15.0568 8.25L11.7566 5.03033L12.8438 3.96967L18 9L12.8438 14.0303L11.7566 12.9697L15.0568 9.75H6.15011V8.25H15.0568Z"
-                                                            fill="black" />
-                                                    </svg>
-                                                    Logout
-                                                </a>
-                                            </div> -->
         </div>
     </section>
 
@@ -55,7 +43,7 @@
             </div>
         </div>
 
-        <div class="mt-10">
+        {{-- <div class="mt-10">
             <div class="font-semibold mb-2 text-2xl text-center">Kill Switch</div>
             <div>
                 <label class="flex items-center justify-center gap-3 cursor-pointer">
@@ -78,7 +66,7 @@
 
 
             </div>
-        </div>
+        </div> --}}
 
     </section>
 @endsection

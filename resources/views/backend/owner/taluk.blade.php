@@ -1,22 +1,12 @@
 @extends('backend.layout')
 @section('title')
-    OTP Page
+    Taluk
 @endsection
-
 @section('content')
     <section class="bg-white p-4">
         <div class="flex items-center justify-between">
             <div class="font-medium flex justify-center items-center">
-                @if (Auth::user()->role_id == 3)
-                    <a href="{{ route('backend.taluk') }}"
-                        class="bg-black rounded-full w-8 h-8 flex justify-center items-center text-[#FED428]">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                        </svg>
 
-                    </a>
-                @endif
                 <svg class="h-5" width="27" height="31" viewBox="0 0 27 31" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <rect x="0.954834" y="0.873047" width="25.0837" height="29.0443" rx="3" fill="#FED428" />
@@ -35,7 +25,7 @@
                 </svg>
 
                 <span>
-                    Sites
+                    Taluks
                 </span>
             </div>
         </div>
@@ -44,10 +34,10 @@
     <section class="px-4 py-6 mb-24">
         <div
             class="bg-white p-4 rounded-sm text-sm divide-y divide-[#DCDCDC] grid grid-cols-1 gap-4 font-medium text-[#2D2D2D]">
-            @foreach ($sites as $item)
-                <a href="{{ route('backend.otp', $item->id) }}" class="grid grid-cols-[1fr_12px] gap-2 not-last:pb-4">
+            @foreach ($taluk as $item)
+                <a href="{{ route('backend.site', $item->id) }}" class="grid grid-cols-[1fr_12px] gap-2 not-last:pb-4">
                     <div>
-                        {{ $item->site_name }} ({{ $item->short_name }})
+                        {{ $item->name }}
                     </div>
                     <div class="flex items-center">
                         <svg class="h-3" width="10" height="17" viewBox="0 0 10 17" fill="none"

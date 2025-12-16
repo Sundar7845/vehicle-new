@@ -27,7 +27,7 @@ class LoginController extends Controller
             // Generate OTP and expiration
             $user->update([
                 'otp' => rand(1000, 9999),
-                'otp_expires_at' => now()->addMinute(),
+                'otp_expires_at' => now()->addMinute(2),
             ]);
 
 

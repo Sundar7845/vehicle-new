@@ -21,7 +21,7 @@ Route::prefix('backend')->group(function () {
 
     // OTP Routes
     Route::get('/dashboard', [App\Http\Controllers\Backend\Dashboard\DashboardController::class, 'dashboard'])->name('backend.dashboard');
-    Route::get('/sites', [App\Http\Controllers\Backend\Site\SiteController::class, 'site'])->name('backend.site');
+    Route::get('/sites/{id?}', [App\Http\Controllers\Backend\Site\SiteController::class, 'site'])->name('backend.site');
     Route::get('/otp/{id}', [App\Http\Controllers\Backend\Site\SiteController::class, 'otp'])->name('backend.otp');
     Route::get('/admin/get-otps/{id}', [App\Http\Controllers\Backend\Site\SiteController::class, 'getOtps'])->name('backend.getotps');
     Route::get('/admin/refresh-otp/{id}', [App\Http\Controllers\Backend\Site\SiteController::class, 'refreshOtp'])->name('backend.refreshotp');
@@ -32,4 +32,5 @@ Route::prefix('backend')->group(function () {
     //Owner Routes
     Route::get('/kill', [App\Http\Controllers\Backend\Owner\OwnerController::class, 'kill'])->name('backend.kill');
     Route::post('/owner/kill-switch', [App\Http\Controllers\Backend\Owner\OwnerController::class, 'updateKill'])->name('owner.kill.update');
+    Route::get('/taluk', [App\Http\Controllers\Backend\Owner\OwnerController::class, 'taluk'])->name('backend.taluk');
 });

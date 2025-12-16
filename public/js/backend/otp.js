@@ -3,14 +3,16 @@ let siteId = $("#siteId").val();
 
 function startTimer() {
     const circle = document.querySelector(".progress-circle");
-    let timeLeft = 60;
+    const totalTime = 120; // 2 minutes in seconds
+    let timeLeft = totalTime;
     const dashArray = 100;
 
     clearInterval(countdownInterval);
 
     countdownInterval = setInterval(() => {
         timeLeft--;
-        circle.style.strokeDashoffset = dashArray * (1 - timeLeft / 60);
+
+        circle.style.strokeDashoffset = dashArray * (1 - timeLeft / totalTime);
 
         if (timeLeft <= 0) {
             clearInterval(countdownInterval);
@@ -108,21 +110,21 @@ function stats() {
 }
 const dateInput = document.getElementById("date");
 
-    // Get today's date
-    const today = new Date();
-    const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2, '0');
-    const dd = String(today.getDate()).padStart(2, '0');
-    const todayStr = `${yyyy}-${mm}-${dd}`;
+// Get today's date
+const today = new Date();
+const yyyy = today.getFullYear();
+const mm = String(today.getMonth() + 1).padStart(2, "0");
+const dd = String(today.getDate()).padStart(2, "0");
+const todayStr = `${yyyy}-${mm}-${dd}`;
 
-    // Get yesterday's date
-    const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
-    const yyyyY = yesterday.getFullYear();
-    const mmY = String(yesterday.getMonth() + 1).padStart(2, '0');
-    const ddY = String(yesterday.getDate()).padStart(2, '0');
-    const yesterdayStr = `${yyyyY}-${mmY}-${ddY}`;
+// Get yesterday's date
+const yesterday = new Date(today);
+yesterday.setDate(yesterday.getDate() - 1);
+const yyyyY = yesterday.getFullYear();
+const mmY = String(yesterday.getMonth() + 1).padStart(2, "0");
+const ddY = String(yesterday.getDate()).padStart(2, "0");
+const yesterdayStr = `${yyyyY}-${mmY}-${ddY}`;
 
-    // Set min/max
-    dateInput.min = yesterdayStr;
-    dateInput.max = todayStr;
+// Set min/max
+dateInput.min = yesterdayStr;
+dateInput.max = todayStr;
