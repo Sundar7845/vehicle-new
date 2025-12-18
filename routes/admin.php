@@ -17,8 +17,10 @@ Route::prefix('backend')->group(function () {
     // Login Routes
     Route::get('/login', [App\Http\Controllers\Backend\Login\LoginController::class, 'login'])->name('backend.login');
     Route::post('/loginstore', [App\Http\Controllers\Backend\Login\LoginController::class, 'loginstore'])->name('backend.loginstore');
-    Route::get('/logout', [App\Http\Controllers\Backend\Login\LoginController::class, 'logout'])->name('backend.logout');
+});
 
+Route::prefix('backend')->middleware('auth')->group(function () {
+    Route::get('/logout', [App\Http\Controllers\Backend\Login\LoginController::class, 'logout'])->name('backend.logout');
     // OTP Routes
     Route::get('/dashboard', [App\Http\Controllers\Backend\Dashboard\DashboardController::class, 'dashboard'])->name('backend.dashboard');
     Route::get('/sites/{id?}', [App\Http\Controllers\Backend\Site\SiteController::class, 'site'])->name('backend.site');
